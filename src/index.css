@@ -1,13 +1,113 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input, button {
+  margin: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #0056b3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004494;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+.player-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.player-list li {
+  padding: 10px;
+  margin: 5px 0;
+  background: #e7e7e7;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.player-list li:hover {
+  background-color: #d7d7d7;
+  transform: translateY(-2px);
+}
+
+.player-list li.selected {
+  background-color: #0056b3;
+  color: white;
+}
+
+.player-list li.dead {
+  background-color: #bbbbbb;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.config-section {
+  margin-bottom: 20px;
+}
+
+.game-info {
+  margin-bottom: 20px;
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #0056b3;
+}
+
+.game-info h3 {
+  margin-top: 0;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.p-4 {
+  padding: 16px;
+}
+
+.hidden {
+  display: none;
 }
