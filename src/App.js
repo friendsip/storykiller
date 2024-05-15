@@ -1,29 +1,30 @@
-// src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import GameSetup from "./components/GameSetup";
-import Game from "./components/Game";
-import { GameStateProvider } from "./GameContext";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PlayerSetup from './PlayerSetup';
+import PlayerSignIn from './PlayerSignIn';
+import StoryRound from './StoryRound';
 
-function App() {
+const App = () => {
+  const [players, setPlayers] = useState([]);
+  const [storyKiller, setStoryKiller] = useState(null);
+  const [round, setRound] = useState(1);
+
   return (
-    <GameStateProvider>
-      <Router>
-        <Routes>
-          <Route path="/setup" element={<GameSetup />} />
-          <Route path="/game" element={<Game />} />
-          <Route
-            path="/"
-            element={
-              <div>
-                <h1>Welcome to the Storytelling Game</h1>
-                <Link to="/setup">Start Game Setup</Link>
-              </div>
-            }
+    <Router>
+      <Routes>
+        <Route path="/" element={players.length === 0 ? (
+          <PlayerSetup setPlayers={setPlayers} setStoryKiller={setStoryKiller} />
+        ) : (
+          <StoryRound 
+            players={players} 
+            round={round} 
+            setRound={setRound} 
+            storyKiller={storyKiller} 
           />
-        </Routes>
-      </Router>
-    </GameStateProvider>
+        )} />
+        <Route path="/join/:id" element={<PlayerSignIn players={players} setPlayers={setPlayers} />} />
+      </Routes>
+    </Router>
   );
 }
 
