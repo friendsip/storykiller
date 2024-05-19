@@ -1,0 +1,15 @@
+const startGame = async (req, res) => {
+    const { playerNames, gameMaster } = req.body;
+    const urls = generateUniqueUrls(playerNames.length);
+    const roles = assignRoles(playerNames);
+
+    const game = new Game({
+        players: roles.players,
+        gameMaster,
+        storyKiller: roles.storyKiller,
+        status: 'active',
+    });
+
+    await game.save();
+    res.json({ urls, gameId: game._id });
+};
